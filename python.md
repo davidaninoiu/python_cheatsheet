@@ -699,4 +699,224 @@ thistuple = ("apple", "banana", "cherry")
 y = ("orange",)
 thistuple += y # ('apple', 'banana', 'cherry', 'orange')
 ```
-###
+### Unpack tuples
+Creating a tuple means packing it, so the reverse is making more variables or lists from an existing one. Unpacking a tuple must always match the number of elements, or else it. will give an error
+```python
+#variables
+fruits = ("apple", "banana", "cherry")  
+(green, yellow, red) = fruits
+
+#variables and list, red will take the remaining elements (notice the *)
+fruits = ("apple", "banana", "cherry", "strawberry", "raspberry")  
+(green, yellow, *red) = fruits
+
+#variables and a list in the middle
+fruits = ("apple", "mango", "papaya", "pineapple", "cherry")  
+(green, *tropic, red) = fruits
+
+#error
+fruits = ("apple", "banana", "cherry")  
+(green, yellow) = fruits
+```
+### Loop tuples
+```python
+thistuple = ("apple", "banana", "cherry")  #for
+for x in thistuple:  
+  print(x)
+
+thistuple = ("apple", "banana", "cherry")  #for, index numbers
+for i in range(len(thistuple)):  
+  print(thistuple[i])
+
+thistuple = ("apple", "banana", "cherry")  #while
+i = 0  
+while i < len(thistuple):  
+  print(thistuple[i])  
+  i = i + 1
+```
+### Join tuples
+```python
+tuple1 = ("a", "b" , "c")  
+tuple2 = (1, 2, 3)
+tuple3 = tuple1 + tuple2
+
+fruits = ("apple", "banana", "cherry")  
+mytuple = fruits * 2
+	print(mytuple) #('apple', 'banana', 'cherry', 'apple', 'banana', 'cherry')
+```
+### Tuple methods
+|Method|Description|
+|---|---|
+|[count()](https://www.w3schools.com/python/ref_tuple_count.asp)|Returns the number of times a specified value occurs in a tuple|
+|[index()](https://www.w3schools.com/python/ref_tuple_index.asp)|Searches the tuple for a specified value and returns the position of where it was found
+## 20. Sets
+Sets are used to store multiple items in a single variable. Sets are UNORDERED, UNINDEXED, UNCHANGABLE (can't change the actual value, but can add an remove values), and does NOT ALLOW DUPLICATES.
+
+### Create sets
+```python
+thisset = {"apple", "banana", "cherry"}
+thisset = set(("apple", "banana", "cherry")) # note the double round-brackets
+thisset = {"apple", "banana", "cherry", True, 1, 2} #True and 1 are considered the same value. Same goes for False and 0
+```
+### Access set items
+While you can't change items, you can add or remove items. 
+
+> [!warning]
+> You cannot access items via index, because there isn't one
+
+
+```python
+thisset = {"apple", "banana", "cherry"}  
+  
+for x in thisset:  
+  print(x) # prints all items
+print("banana" in thisset) # True
+print("banana" not in thisset) # False
+```
+### Add items in a set
+```python
+thisset = {"apple", "banana", "cherry"}  
+thisset.add("orange")
+
+thisset = {"apple", "banana", "cherry"}  
+tropical = {"pineapple", "mango", "papaya"}  
+thisset.update(tropical) # adds elements from tropical to thisset
+
+thisset = {"apple", "banana", "cherry"}  
+mylist = ["kiwi", "orange"]  
+thisset.update(mylist) #also works for adding elements from other data types
+```
+
+### Remove items in a set
+```python
+thisset = {"apple", "banana", "cherry"}  
+thisset.remove("banana") # if the item removed does not exist at first, it will give an error
+thisset.discard("cherry") # if the item removed does not exist at first, it will NOT give an error
+x = thisset.pop() #removes a random item
+thisset.clear() #gives a void set
+del thisset #deletes the set altogether, cannot be accessed afterwards
+```
+
+### Loop sets
+```python
+thisset = {"apple", "banana", "cherry"}  #only valid way, since items are indexless. output will be random
+  
+for x in thisset:  
+  print(x)
+```
+### Join sets
+>[!NOTE]
+>There are several ways to join two or more sets in Python.
+>
+>The [union()](https://www.w3schools.com/python/ref_set_union.asp) and [update()](https://www.w3schools.com/python/ref_set_update.asp) methods joins all items from both sets. Also there is `|`.
+>
+>The [intersection()](https://www.w3schools.com/python/ref_set_intersection.asp) method keeps ONLY the duplicates. Also there is `&`.
+> 
+>The [difference()](https://www.w3schools.com/python/ref_set_difference.asp) method keeps the items from the first set that are not in the other set(s). Also there is `-`.
+>
+>The [symmetric_difference()](https://www.w3schools.com/python/ref_set_symmetric_difference.asp) method keeps all items EXCEPT the duplicates. Also there is `^`.
+>
+>Note that `| , &, -, ^` can only be used between set, while the methods can be used between a set and a different data type. You can also see a pattern with `_update` being added to the method that will edit the initial set instead of creating a new one.
+
+
+#### Union
+```python
+set1 = {"a", "b", "c"}  
+set2 = {1, 2, 3}  
+  
+set3 = set1.union(set2)  
+print(set3) # {1, 'b', 3, 2, 'c', 'a'}
+
+
+x = {"a", "b", "c"}  
+y = (1, 2, 3)  
+  
+z = x.union(y)  # added a tuple to a set
+print(z)
+```
+Example of `|`
+```python
+set1 = {"a", "b", "c"}  
+set2 = {1, 2, 3}  
+set3 = {"John", "Elena"}  
+set4 = {"apple", "bananas", "cherry"}  
+  
+myset = set1 | set2 | set3 |set4  
+print(myset) # {banana, John, apple, 1, 3, 'a', cherry, Elena, 'b', 'c', 2}
+```
+
+#### Update
+```python 
+set1 = {"a", "b" , "c"}  
+set2 = {1, 2, 3}  
+  
+set1.update(set2)  
+print(set1)
+```
+>[!warning]
+>Note that both union and update remove any duplicates.
+
+#### Intersection
+```python
+set1 = {"apple", "banana", "cherry"}  
+set2 = {"google", "microsoft", "apple"}  
+  
+set3 = set1.intersection(set2) # {'apple'}
+set3 = set1 & set2 # method 2
+set1.intersection_update(set2) # will only keep duplicates, but instead of returning a new set, it will update your set
+```
+
+#### Difference
+```python
+set1 = {"apple", "banana", "cherry"}  
+set2 = {"google", "microsoft", "apple"}  
+  
+set3 = set1.difference(set2) #method 1 ; {'banana', 'cherry'}
+set3 = set1 - set2 #method 2, using operator
+set1.difference_update(set2) #method 3, formatting the initial set
+```
+
+#### Symmetric difference
+```python
+set1 = {"apple", "banana", "cherry"}  
+set2 = {"google", "microsoft", "apple"}  
+  
+set3 = set1.symmetric_difference(set2) # {'google', 'banana', 'microsoft', 'cherry'}
+set3 = set1 ^ set2
+set1.symmetric_difference_update(set2)
+```
+
+### Frozenset
+`frozenset` is an immutable version of a set.
+Like sets, it contains unique, unordered, unchangeable elements.
+Unlike sets, elements cannot be added or removed from a frozenset.
+
+Being immutable means you cannot add or remove elements. However, frozensets support all non-mutating operations of sets.
+```python
+x = frozenset({"apple", "banana", "cherry"})  
+print(x)  
+print(type(x)) #<class 'frozenset'>
+```
+
+### Set methods
+| Method                                                                                                    | Shortcut                                                                       | Description                                                                    |
+| --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| [add()](https://www.w3schools.com/python/ref_set_add.asp)                                                 |                                                                                | Adds an element to the set                                                     |
+| [clear()](https://www.w3schools.com/python/ref_set_clear.asp)                                             |                                                                                | Removes all the elements from the set                                          |
+| [copy()](https://www.w3schools.com/python/ref_set_copy.asp)                                               |                                                                                | Returns a copy of the set                                                      |
+| [difference()](https://www.w3schools.com/python/ref_set_difference.asp)                                   | [-](https://www.w3schools.com/python/ref_set_difference.asp)                   | Returns a set containing the difference between two or more sets               |
+| [difference_update()](https://www.w3schools.com/python/ref_set_difference_update.asp)                     | [-=](https://www.w3schools.com/python/ref_set_difference_update.asp)           | Removes the items in this set that are also included in another, specified set |
+| [discard()](https://www.w3schools.com/python/ref_set_discard.asp)                                         |                                                                                | Remove the specified item                                                      |
+| [intersection()](https://www.w3schools.com/python/ref_set_intersection.asp)                               | [&](https://www.w3schools.com/python/ref_set_intersection.asp)                 | Returns a set, that is the intersection of two other sets                      |
+| [intersection_update()](https://www.w3schools.com/python/ref_set_intersection_update.asp)                 | [&=](https://www.w3schools.com/python/ref_set_intersection_update.asp)         | Removes the items in this set that are not present in other, specified set(s)  |
+| [isdisjoint()](https://www.w3schools.com/python/ref_set_isdisjoint.asp)                                   |                                                                                | Returns True if NO items of this set is present in another set                 |
+| [issubset()](https://www.w3schools.com/python/ref_set_issubset.asp)                                       | [<=](https://www.w3schools.com/python/ref_set_issubset.asp)                    | Returns True if all items of this set is present in another set                |
+|                                                                                                           | [<](https://www.w3schools.com/python/ref_set_lessthan.asp)                     | Returns True if all items of this set is present in another, _larger_ set      |
+| [issuperset()](https://www.w3schools.com/python/ref_set_issuperset.asp)                                   | [>=](https://www.w3schools.com/python/ref_set_issuperset.asp)                  | Returns True if all items of another set is present in this set                |
+|                                                                                                           | [>](https://www.w3schools.com/python/ref_set_greaterthan.asp)                  | Returns True if all items of another, _smaller_ set is present in this set     |
+| [pop()](https://www.w3schools.com/python/ref_set_pop.asp)                                                 |                                                                                | Removes an element from the set                                                |
+| [remove()](https://www.w3schools.com/python/ref_set_remove.asp)                                           |                                                                                | Removes the specified element                                                  |
+| [symmetric_difference()](https://www.w3schools.com/python/ref_set_symmetric_difference.asp)               | [^](https://www.w3schools.com/python/ref_set_symmetric_difference.asp)         | Returns a set with the symmetric differences of two sets                       |
+| [symmetric_difference_update()](https://www.w3schools.com/python/ref_set_symmetric_difference_update.asp) | [^=](https://www.w3schools.com/python/ref_set_symmetric_difference_update.asp) | Inserts the symmetric differences from this set and another                    |
+| [union()](https://www.w3schools.com/python/ref_set_union.asp)                                             | [\|](https://www.w3schools.com/python/ref_set_union.asp)                       | Return a set containing the union of sets                                      |
+| [update()](https://www.w3schools.com/python/ref_set_update.asp)                                           | [\|=](https://www.w3schools.com/python/ref_set_update.asp)                     | Update the set with the union of this set and others                           |
