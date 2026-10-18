@@ -1,5 +1,6 @@
-I recommend checking out the website, as you can try the live coding. The chapters order matches the website's.
-> [!INFO] Source & Reference
+I recommend checking out the website, as you can try the code live. The chapters order matches the website's.
+> [!NOTE] 
+> Source & Reference
 > This note uses information from [W3Schools Python Tutorial](https://www.w3schools.com/python). Check it out for interactive exercises and further explanations.
 
 ---
@@ -68,7 +69,8 @@ print("I am", 20, "years old")
 
 You do not need to declare a variable type when creating it, though you can specify types using casting.
 
-> [!WARNING] Case Sensitivity
+> [!WARNING] 
+> Case Sensitivity
 > Variable names are case-sensitive: `x` is not the same as `X`.
 
 ```python
@@ -121,7 +123,8 @@ print(x, y, z)
 print(x + y + z)
 ```
 
-> [!NOTE] Behavior of `+`
+> [!NOTE] 
+> Behavior of `+`
 > - For numbers, `+` acts as mathematical addition.
 > - For strings, `+` concatenates without adding spaces.
 > - You cannot combine strings and numbers using `+`.
@@ -321,7 +324,8 @@ txt = f"The price is {20 * 59} dollars"
 print(txt)  # "The price is 1180 dollars"
 ```
 
-> [!TIP] Further Resources
+> [!TIP] 
+> Further Resources
 > - [W3Schools String Escape Characters Reference](https://www.w3schools.com/python/python_strings_escape.asp)
 > - [W3Schools String Methods Reference](https://www.w3schools.com/python/python_strings_methods.asp) - will check certain proprieties for strings
 
@@ -506,13 +510,13 @@ thislist = ["abc", 34, True, 40, "male"]
 #            0,    1,   2,   3,   4
 #            -5,   -4,  -3,  -2,  -1
 ```
-### CREATING A LIST
+### Creating a list
 ```python
 thislist = ["abc", 34, True, 40, "male"]
 # alternative way of creating a list 
 otherlist = list(("apple", "banana", "cherry")) # note the double round-brackets
 ```
-### PRINTING A LIST
+### Printing a list
 ```python
 print(thislist) # prints the whole list with paretheses and separated by commas
 print(len(thislist)) # 5
@@ -527,7 +531,7 @@ if "abc" in thislist:
   print("Yes, 'abc' is in the list")
 ```
 
-### EDITING A LIST
+### Editing a list
 ```python
 
 thislist[1] = "def" #changes the element indexed as 1
@@ -535,13 +539,13 @@ thislist[1:3] = ["def", "jam"] #changes elements [1,3)
 thislist[1:2] = ["blackcurrant", "watermelon"] #changes element 1 and adds the rest of them, so even if it changes 1 element, it adds the extra elements after the changed element, so the lenght increases
 thislist.insert(2, "stuff") #inserts as the 3rd element "stuff" (index 2)
 ```
-### ADDING TO A LIST
+### Adding to a list
 ```python
 thislist.append("orange") # appends elements
 thislist.extend(otherlist) # appends otherlist to thislist
 thislist.extend(#whatever stucture) #also works for appending other stuctures types (tuple, set, dict)
 ```
-### REMOVING FROM A LIST
+### Removing from a list
 ```python
 thislist.remove("male") #removes element
 thislist.pop(1) #removes 2nd element (indexed 1)
@@ -550,7 +554,7 @@ del thislist[0] # deletes the first element
 del thislist # deletes the entire list ; print(thislist) afterwards will cause an error
 thislist.clear() # clears the list; the list remains, but it's empty
 ```
-### LOOPING THROUGH A LIST
+### Looping through a list
 ```python
 
 thislist = ["apple", "banana", "cherry"]  
@@ -567,7 +571,7 @@ while i < len(thislist):
   
 [print(x) for x in thislist]
 ```
-### LIST COMPREHESION
+### List comprehesion
 ```python
 SYNTAX: newlist = [expression for item in iterable if condition == True]
 #the contition will return the elements for which the condition is true, but this can be omitted
@@ -596,7 +600,7 @@ newlist = [x.upper() for x in fruits] #['APPLE', 'BANANA', 'CHERRY', 'KIWI', 'MA
 
 newlist = [x if x != "banana" else "orange" for x in fruits] #['apple', 'orange', 'cherry', 'kiwi', 'mango']
 ```
-### LIST SORTING
+### List sorting
 ```python
 thislist = ["orange", "mango", "kiwi", "pineapple", "banana"]  
 thislist.sort() #alphanumerical ascending sorting
@@ -607,7 +611,7 @@ thislist.sort(key = str.lower) #case unsensitive sorting
 thislist.sort(key = str.lower, reverse = True) # descending case unsensitive sorting
 thislist.reverse() # ['cherry', 'Kiwi', 'Orange', 'banana'] , reverse of the current order
 ```
-### COPY LISTS
+### Copy lists
 Doing list2 = list1 will not copy the list, but will instead be a reference to the original list.
 ```python
 thislist = ["apple", "banana", "cherry"]  
@@ -617,3 +621,82 @@ mylist = thislist[:] # method 3
 mylist = thislist[:2] #copy only the first two elements
 mylist = thislist[1:2] #copy only the second element
 ```
+### Join lists
+```python
+list1 = ["a", "b", "c"]  
+list2 = [1, 2, 3]  
+  
+list3 = list1 + list2 #method 1 : make a new list
+for x in list2:  #method 2 : append to list1 list2
+  list1.append(x)
+list1.extend(list2) #method 3 : extend list1
+```
+### List methods
+|Method|Description|
+|---|---|
+|[append()](https://www.w3schools.com/python/ref_list_append.asp)|Adds an element at the end of the list|
+|[clear()](https://www.w3schools.com/python/ref_list_clear.asp)|Removes all the elements from the list|
+|[copy()](https://www.w3schools.com/python/ref_list_copy.asp)|Returns a copy of the list|
+|[count()](https://www.w3schools.com/python/ref_list_count.asp)|Returns the number of elements with the specified value|
+|[extend()](https://www.w3schools.com/python/ref_list_extend.asp)|Add the elements of a list (or any iterable), to the end of the current list|
+|[index()](https://www.w3schools.com/python/ref_list_index.asp)|Returns the index of the first element with the specified value|
+|[insert()](https://www.w3schools.com/python/ref_list_insert.asp)|Adds an element at the specified position|
+|[pop()](https://www.w3schools.com/python/ref_list_pop.asp)|Removes the element at the specified position|
+|[remove()](https://www.w3schools.com/python/ref_list_remove.asp)|Removes the item with the specified value|
+|[reverse()](https://www.w3schools.com/python/ref_list_reverse.asp)|Reverses the order of the list|
+|[sort()](https://www.w3schools.com/python/ref_list_sort.asp)|Sorts the list|
+## 19. Tuples
+Tuples are used to store multiple items in a single variable. Tuples are ORDERED, IMMUTABLE (unchangeable) and ALLOWS DUPLICATES. Tuples are indexed from 0 same as lists (same negative indexing as well).
+### Creating a tuple
+```python
+thistuple = ("apple", "banana", "cherry", "apple", "cherry") #method 1
+thistuple = "apple", "banana", "cherry" #method 2
+thistuple = tuple(("apple", "banana", "cherry")) # note the double round-brackets, method 3
+
+#CREATING A TUPLE WITH ONE ELEMENT
+thistuple = ("apple",)  
+print(type(thistuple))  #TUPLE
+  
+#NOT a tuple  
+thistuple = ("apple")  
+print(type(thistuple)) #STR
+
+thistuple = () #void tuple
+
+tuple1 = ("abc", 34, True, 40, "male") #tuple can contain different data types
+```
+### Access tuples
+```python
+thistuple = ("apple", "banana", "cherry")  
+print(thistuple[1]) # banana
+print(thistuple[-1]) #cherry
+
+thistuple = ("apple", "banana", "cherry", "orange", "kiwi", "melon", "mango")  
+print(thistuple[2:5]) # ('cherry', 'orange', 'kiwi')
+print(thistuple[:4]) # ('apple', 'banana', 'cherry', 'orange')
+print(thistuple[2:]) # ('cherry', 'orange', 'kiwi', 'melon', 'mango')
+
+thistuple = ("apple", "banana", "cherry")  
+if "apple" in thistuple:  
+  print("Yes, 'apple' is in the fruits tuple")
+```
+
+### Update tuples
+We already established that we can't modify tuples, but there is a workaround. We can easily convert a tuple to a list and edit it afterwards. In the end, we can convert it back to a tuple. This can be used to add or remove items.
+
+```python
+thistuple = ("apple", "banana", "cherry")  
+y = list(thistuple)  
+y.remove("apple")  
+thistuple = tuple(y) #("banana", "cherry")
+
+#you can also delete a tuple
+del thistuple
+print(thistuple) # error
+
+#also for adding items, you can add a tuple to another tuple
+thistuple = ("apple", "banana", "cherry")
+y = ("orange",)
+thistuple += y # ('apple', 'banana', 'cherry', 'orange')
+```
+###
