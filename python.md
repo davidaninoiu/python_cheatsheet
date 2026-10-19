@@ -920,3 +920,225 @@ print(type(x)) #<class 'frozenset'>
 | [symmetric_difference_update()](https://www.w3schools.com/python/ref_set_symmetric_difference_update.asp) | [^=](https://www.w3schools.com/python/ref_set_symmetric_difference_update.asp) | Inserts the symmetric differences from this set and another                    |
 | [union()](https://www.w3schools.com/python/ref_set_union.asp)                                             | [\|](https://www.w3schools.com/python/ref_set_union.asp)                       | Return a set containing the union of sets                                      |
 | [update()](https://www.w3schools.com/python/ref_set_update.asp)                                           | [\|=](https://www.w3schools.com/python/ref_set_update.asp)                     | Update the set with the union of this set and others                           |
+
+## 21. Dictionaries
+> [!WARNING]
+>`*` As of Python version 3.7, dictionaries are _ordered_. In Python 3.6 and earlier, dictionaries are _unordered_.
+
+Dictionaries are used to store data values in key:value pairs.
+A dictionary is a collection which is ORDERED*, CHANGEABLE and do NOT ALLOW DUPLICATES.
+
+### Create a dictionary
+```python 
+thisdict = {  #like all the other data types for storing items, you can have multiple data types inside
+  "brand": "Ford",  
+  "electric": False,  
+  "year": 1964,  
+  "colors": ["red", "white", "blue"]  
+}
+print(thisdict) #{'brand': 'Ford', 'electric': False, 'year': 1964, 'colors': ['red', 'white', 'blue']}
+print(thisdict["brand"]) # Ford
+
+thisdict = {  
+  "brand": "Ford",  
+  "model": "Mustang",  
+  "year": 1964,  
+  "year": 2020  #since duplicates are not allowed, this will overwrite the existing "year"
+}  
+print(thisdict) #{'brand': 'Ford', 'model': 'Mustang', 'year': 2020}
+```
+
+### Access items in a dictionary
+```python
+thisdict = {  
+  "brand": "Ford",  
+  "model": "Mustang",  
+  "year": 1964  
+}  
+x = thisdict["model"] # method 1 , Mustang
+x = thisdict.get("model") # method 2
+x = thisdict.keys() # dict_keys(['brand', 'model', 'year'])
+x = thisdict.values() # dict_values(['Ford', 'Mustang', 1964])
+```
+The list of the keys is a _view_ of the dictionary, meaning that any changes done to the dictionary will be reflected in the keys list.
+```python
+car = {  
+"brand": "Ford",  
+"model": "Mustang",  
+"year": 1964  
+}  
+  
+if "model" in thisdict:  
+  print("Yes, 'model' is one of the keys in the thisdict dictionary") #check if a certain key is inside the dictionary
+x = car.keys()  
+print(x) # dict_keys(['brand', 'model', 'year'])
+car["color"] = "white"  
+print(x) # dict_keys(['brand', 'model', 'year', 'color'])
+```
+This works similarly for the values method. Notice how x gets updated, since it's not a regular variable.
+```python
+car = {  
+"brand": "Ford",  
+"model": "Mustang",  
+"year": 1964  
+}  
+  
+x = car.values()  
+  
+print(x) #dict_values(['Ford', 'Mustang', 1964])
+  
+car["year"] = 2020  
+  
+print(x) #dict_values(['Ford', 'Mustang', 2020])
+
+car["color"] = "red"  
+  
+print(x) #dict_values(['Ford', 'Mustang', 2020, 'red'])
+```
+There is also a way to get all items in tuples, list that gets updated as well.
+```python
+car = {  
+"brand": "Ford",  
+"model": "Mustang",  
+"year": 1964  
+}  
+  
+x = car.items()  
+  
+print(x) #dict_items([('brand', 'Ford'), ('model', 'Mustang'), ('year', 1964)]) 
+  
+car["year"] = 2020  
+  
+print(x) #dict_items([('brand', 'Ford'), ('model', 'Mustang'), ('year', 2020)])
+```
+
+### Change values
+```python
+thisdict = {  
+  "brand": "Ford",  
+  "model": "Mustang",  
+  "year": 1964  
+}  
+thisdict["year"] = 2018 #method 1
+thisdict.update({"year": 2020}) #method 2
+```
+
+### Add items
+```python
+thisdict = {  
+  "brand": "Ford",  
+  "model": "Mustang",  
+  "year": 1964  
+}  
+thisdict["color"] = "red" #method 1
+thisdict.update({"color": "red"}) #method 2
+```
+
+### Remove items
+```python
+thisdict = {  
+  "brand": "Ford",  
+  "model": "Mustang",  
+  "year": 1964  
+}  
+thisdict.pop("model") #eliminates model
+thisdict.pop() # eliminates the last element in dictionary as of python 3.7. before 3.7, eliminates random item
+del thisdict["model"] #eliminates model
+del thisdict #eliminates dictionary entirely
+thisdict.clear() #clears dictionary
+```
+
+### Loop dictionaries
+```python
+for x in thisdict:  # Print all key names in the dictionary, one by one
+  print(x)
+  
+for x in thisdict:  #Print all VALUES in the dictionary, one by one
+  print(thisdict[x])
+  
+for x in thisdict.values():  # Print all values
+  print(x)
+  
+for x in thisdict.keys():  # Print all keys
+  print(x)
+  
+for x, y in thisdict.items():  #Print all keys and values like shown under
+  print(x, y) 
+"""brand Ford  
+model Mustang  
+year 1964"""
+```
+
+### Copy dictionaries
+Like other storing data types, you can't copy dictionaries like this : dict1=dict. This method will only attribute a reference of dict to dict1. However, you can copy it by typing it's data type: dict1 = dict(dict) ; or by using .copy()
+```python
+thisdict = {  
+  "brand": "Ford",  
+  "model": "Mustang",  
+  "year": 1964  
+}  
+mydict = thisdict.copy() #method 1
+mydict = dict(thisdict) #method 2
+```
+
+### Nested dictionaries
+Having directories within directories is possible 
+```python
+myfamily = {  #create nested directories method 1
+  "child1" : {  
+    "name" : "Emil",  
+    "year" : 2004  
+  },  
+  "child2" : {  
+    "name" : "Tobias",  
+    "year" : 2007  
+  },  
+  "child3" : {  
+    "name" : "Linus",  
+    "year" : 2011  
+  }  
+}
+
+#create nested directories method 2
+child1 = {  
+  "name" : "Emil",  
+  "year" : 2004  
+}  
+child2 = {  
+  "name" : "Tobias",  
+  "year" : 2007  
+}  
+child3 = {  
+  "name" : "Linus",  
+  "year" : 2011  
+}  
+  
+myfamily = {  
+  "child1" : child1,  
+  "child2" : child2,  
+  "child3" : child3  
+}
+
+print(myfamily["child2"]["name"]) #accessing data from such a dictionary
+
+for x, obj in myfamily.items():  #looping throgh such a dictionary
+  print(x)  
+  
+  for y in obj:  
+    print(y + ':', obj[y])
+```
+
+### Dictionary methods
+| Method                                                                         | Description                                                                                                 |
+| ------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| [clear()](https://www.w3schools.com/python/ref_dictionary_clear.asp)           | Removes all the elements from the dictionary                                                                |
+| [copy()](https://www.w3schools.com/python/ref_dictionary_copy.asp)             | Returns a copy of the dictionary                                                                            |
+| [fromkeys()](https://www.w3schools.com/python/ref_dictionary_fromkeys.asp)     | Returns a dictionary with the specified keys and value                                                      |
+| [get()](https://www.w3schools.com/python/ref_dictionary_get.asp)               | Returns the value of the specified key                                                                      |
+| [items()](https://www.w3schools.com/python/ref_dictionary_items.asp)           | Returns a list containing a tuple for each key value pair                                                   |
+| [keys()](https://www.w3schools.com/python/ref_dictionary_keys.asp)             | Returns a list containing the dictionary's keys                                                             |
+| [pop()](https://www.w3schools.com/python/ref_dictionary_pop.asp)               | Removes the element with the specified key                                                                  |
+| [popitem()](https://www.w3schools.com/python/ref_dictionary_popitem.asp)       | Removes the last inserted key-value pair                                                                    |
+| [setdefault()](https://www.w3schools.com/python/ref_dictionary_setdefault.asp) | Returns the value of the specified key. If the key does not exist: insert the key, with the specified value |
+| [update()](https://www.w3schools.com/python/ref_dictionary_update.asp)         | Updates the dictionary with the specified key-value pairs                                                   |
+| [values()](https://www.w3schools.com/python/ref_dictionary_values.asp)         | Returns a list of all the values in the dictionary                                                          |
