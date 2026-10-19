@@ -1142,3 +1142,71 @@ for x, obj in myfamily.items():  #looping throgh such a dictionary
 | [setdefault()](https://www.w3schools.com/python/ref_dictionary_setdefault.asp) | Returns the value of the specified key. If the key does not exist: insert the key, with the specified value |
 | [update()](https://www.w3schools.com/python/ref_dictionary_update.asp)         | Updates the dictionary with the specified key-value pairs                                                   |
 | [values()](https://www.w3schools.com/python/ref_dictionary_values.asp)         | Returns a list of all the values in the dictionary                                                          |
+
+## 22. IF ... ELSE
+The `if` statement needs a condition that evaluates to true or false to know whether to execute the next lines or to ignore them. See the sythax below, and notice the indentation (spaces left on the line after the if).
+```python
+a = 33  
+b = 200  
+if b > a:  #true
+  print("b is greater than a")
+```
+There is also `elif` that is just else if, an if that evaluates if the first one is false
+```python
+a = 33  
+b = 33  
+if b > a:  
+  print("b is greater than a")  
+elif a == b:  
+  print("a and b are equal")
+```
+Also there is `else`. I will not explain it, since it's pretty obvious, but feel free to check out the [website](https://www.w3schools.com/python/python_conditions.asp) for extra information.
+```python
+a = 200  
+b = 33  
+if b > a:  
+  print("b is greater than a")  
+elif a == b:  
+  print("a and b are equal")  
+else:  
+  print("a is greater than b")
+```
+You can write if...else on a single line.
+```python
+a = 2  
+b = 330  
+bigger = a if a > b else b
+print("Bigger is", bigger)
+print("A") if a > b else print("B")
+
+a = 330  
+b = 330  
+print("A") if a > b else print("=") if a == b else print("B")
+```
+You can also use logical operators.
+```python
+a = 200  
+b = 33  
+c = 500  
+if a > b or a > c:  
+  print("At least one of the conditions is True")
+```
+You can also have nested ifs.
+```python
+x = 41  
+  
+if x > 10:  
+  print("Above ten,")  
+  if x > 20:  
+    print("and also above 20!")  
+  else:  
+    print("but not above 20.")
+```
+If you wish to implement and if statement, but you are not ready to write it, you can use `pass` to avoid getting an error for missing instructions.
+```python
+a = 33  
+b = 200  
+  
+if b > a:  
+  pass
+```
