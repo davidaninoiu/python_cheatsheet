@@ -1210,3 +1210,140 @@ b = 200
 if b > a:  
   pass
 ```
+
+## 23. Match
+Instruction similar with switch from C++, it has cases. There is a default case with the `_` character, which is not mandatory, and you can also combine values. You can also add extra conditions with an `if` after the case.
+```python
+day = 4  
+match day:  
+  case 1:  
+    print("Monday")  
+  case 2:  
+    print("Tuesday")  
+  case 3:  
+    print("Wednesday")  
+  case 4:  
+    print("Thursday")  
+  case 5:  
+    print("Friday")  
+  case 6:  
+    print("Saturday")  
+  case 7:  
+    print("Sunday")
+    
+    
+day = 4  
+match day:  
+  case 6:  
+    print("Today is Saturday")  
+  case 7:  
+    print("Today is Sunday")  
+  case _:  #default case
+    print("Looking forward to the Weekend")
+    
+    
+day = 4  
+match day:  
+  case 1 | 2 | 3 | 4 | 5:  #combined values
+    print("Today is a weekday")  
+  case 6 | 7:  
+    print("I love weekends!")
+    
+month = 5  
+day = 4  
+match day:  
+  case 1 | 2 | 3 | 4 | 5 if month == 4:  #add extra condition
+    print("A weekday in April")  
+  case 1 | 2 | 3 | 4 | 5 if month == 5:  
+    print("A weekday in May")  
+  case _:  
+    print("No match")
+```
+
+## 24. While loops
+```python
+i = 1  
+while i < 6:  
+  print(i)  
+  if i == 3:  
+    break  # the loop will stop when i reaches 3
+  i += 1
+  
+  
+i = 0  
+while i < 6:  
+  i += 1  
+  if i == 3:  
+    continue  #the loop will skip the steps left in the loop for i = 3
+  print(i) # 1 2 4 5 6
+  
+
+#if the while doesn't respect it's condition anymore, you can use else. this will not be run if while is stopped via the break condition
+i = 1  
+while i < 6:  
+  print(i)  
+  i += 1  
+else: 
+  print("i is no longer less than 6") 
+```
+
+## 25. For loops
+A [for](https://www.w3schools.com/python/ref_keyword_for.asp) loop is used for iterating over a sequence (that is either a list, a tuple, a dictionary, a set, or a string), and it's a bit different from C++, The for loop does not require an indexing variable to set beforehand..
+```python
+fruits = ["apple", "banana", "cherry"]  
+for x in fruits:  
+  print(x) 
+  
+for x in "banana":  
+  print(x) #b a n a n a
+  
+fruits = ["apple", "banana", "cherry"]  
+for x in fruits:  
+  print(x)  
+  if x == "banana":  
+    break #stop the loop
+    
+    
+fruits = ["apple", "banana", "cherry"]  
+for x in fruits:  
+  if x == "banana":  
+    continue  #skip one step
+  print(x)
+  
+for x in range(6):  
+  print(x) # 0, 1, 2, 3, 4, 5
+# we will discuss range later, but note that range(6) is not the values of 0 to 6, but the values 0 to 5.
+
+for x in range(2, 6):  # put like this, parameters show that the range starts from 2 (incl) to 6 (not incl)
+  print(x) #2, 3, 4, 5
+  
+for x in range(2, 30, 3):  #the third parameter represents the increment size
+  print(x) # 2, 5, 8, 11, 14, 17, 20, 23, 26, 29
+  
+for x in range(6):  
+  print(x)  
+else:  # when the for loop finished (without break) it will execute the else
+  print("Finally finished!")
+  
+#there is also for in for, or a nested for
+adj = ["red", "big", "tasty"]  
+fruits = ["apple", "banana", "cherry"]  
+  
+for x in adj:  
+  for y in fruits:  
+    print(x, y)
+"""
+red apple  
+red banana  
+red cherry  
+big apple  
+big banana  
+big cherry  
+tasty apple  
+tasty banana  
+tasty cherry
+"""
+
+for x in [0, 1, 2]:  
+  pass #if you want an empty for, you need to use `pass`
+```
